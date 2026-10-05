@@ -39,7 +39,13 @@ export function splitEqually(total: number, n: number): number[] {
   if (n <= 0) return [];
   const cents = Math.round(total * 100);
   const share = Math.floor(cents / n);
-  return Array.from({ length: n }, () => share / 100);
+  const remainder = cents % n;
+
+  const shares: number[] = [];
+  for (let i = 0; i < n; i++) {
+    shares.push((share + (i < remainder ? 1 : 0)) / 100);
+  }
+  return shares;
 }
 
 /**
