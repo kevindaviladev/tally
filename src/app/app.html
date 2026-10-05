@@ -1,0 +1,93 @@
+<div class="page">
+  <header class="masthead">
+    <div class="brand">
+      <span class="brand-mark">Tally</span>
+      <span class="brand-sub">reparte y cuadra</span>
+    </div>
+    <div class="group">
+      <p class="eyebrow">Grupo</p>
+      <h1>{{ groupName }}</h1>
+      <p class="group-meta">{{ members.length }} personas · {{ rows().length }} gastos</p>
+    </div>
+  </header>
+
+  <main class="book">
+    <section class="ledger" aria-labelledby="gastos-title">
+      <div class="section-head">
+        <h2 id="gastos-title">Gastos</h2>
+        <div class="total">
+          <span class="total-label">Total</span>
+          <span class="total-value">{{ totalLabel() }}</span>
+        </div>
+      </div>
+
+      <table class="entries">
+        <thead>
+          <tr>
+            <th class="idx">#</th>
+            <th>Concepto</th>
+            <th>Pagó</th>
+            <th class="num">Importe</th>
+            <th class="num">Reparto</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of rows(); track row.id; let i = $index) {
+            <tr>
+              <td class="idx">{{ i + 1 }}</td>
+              <td class="concept">{{ row.description }}</td>
+              <td class="who"><span class="chip">{{ row.paidBy }}</span></td>
+              <td class="num fig">{{ row.amount }}</td>
+              <td class="num fig reparto">{{ row.shares }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <div class="check" [class.check--bad]="mismatch()">
+        <span class="check-label">Repartido</span>
+        <span class="check-fig fig">{{ allocatedLabel() }} / {{ totalLabel() }}</span>
+        @if (mismatch()) {
+          <span class="flag flag--bad">descuadra {{ differenceLabel() }}</span>
+        } @else {
+          <span class="flag flag--ok">cuadra</span>
+        }
+      </div>
+    </section>
+
+    <section class="account" aria-labelledby="saldos-title">
+      <h2 id="saldos-title">Saldos</h2>
+      <ul class="beams">
+        @for (balance of balances(); track balance.name) {
+          <li class="beam" [class.beam--credit]="balance.positive" [class.beam--debit]="!balance.positive">
+            <span class="beam-who">{{ balance.name }}</span>
+            <span class="beam-track"><span class="beam-bar" [style.width.%]="balance.width"></span></span>
+            <span class="beam-net fig">{{ balance.net }}</span>
+          </li>
+        }
+      </ul>
+
+      <h2 class="settle-heading">Cómo saldar</h2>
+      @if (settlements().length) {
+        <ul class="settlements">
+          @for (settlement of settlements(); track $index) {
+            <li class="settlement">
+              <span class="settle-from">{{ settlement.from }}</span>
+              <span class="settle-arrow" aria-hidden="true">→</span>
+              <span class="settle-to">{{ settlement.to }}</span>
+              <span class="settle-amount fig">{{ settlement.amount }}</span>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="empty">Todo cuadrado. Nadie debe nada.</p>
+      }
+    </section>
+  </main>
+
+  <footer class="colophon">
+    <span>importes guardados en céntimos</span>
+    <span class="dot" aria-hidden="true">·</span>
+    <span>Tally</span>
+  </footer>
+</div>

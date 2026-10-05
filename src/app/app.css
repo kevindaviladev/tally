@@ -1,0 +1,394 @@
+:host {
+  display: block;
+}
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 56px);
+}
+
+/* ---------- masthead ---------- */
+.masthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.brand-mark {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.brand-sub {
+  font-family: var(--font-fig);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-soft);
+}
+
+.group {
+  text-align: right;
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-fig);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ink-soft);
+}
+
+.group h1 {
+  margin: 2px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.group-meta {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- two columns ---------- */
+.book {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  margin-top: 32px;
+}
+
+@media (max-width: 880px) {
+  .book {
+    grid-template-columns: 1fr;
+  }
+
+  .masthead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .group {
+    text-align: left;
+  }
+}
+
+h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+}
+
+/* ---------- ledger ---------- */
+.ledger {
+  padding: clamp(16px, 2vw, 24px);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.total {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.total-label {
+  font-family: var(--font-fig);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-soft);
+}
+
+.total-value {
+  font-family: var(--font-fig);
+  font-variant-numeric: tabular-nums;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--amber);
+}
+
+.entries {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.entries thead th {
+  padding: 8px 10px;
+  text-align: left;
+  font-family: var(--font-fig);
+  font-size: 0.64rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.entries th.num,
+.entries td.num {
+  text-align: right;
+}
+
+.entries tbody td {
+  padding: 11px 10px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: baseline;
+}
+
+.entries tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.idx {
+  width: 2.4rem;
+  font-family: var(--font-fig);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+
+.concept {
+  font-weight: 500;
+}
+
+.who {
+  width: 7rem;
+}
+
+.chip {
+  display: inline-block;
+  padding: 2px 9px;
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  font-size: 0.74rem;
+}
+
+.fig {
+  font-family: var(--font-fig);
+  font-variant-numeric: tabular-nums;
+}
+
+.reparto {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 3px double var(--ink);
+  font-family: var(--font-fig);
+  font-size: 0.82rem;
+}
+
+.check-label {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+}
+
+.check-fig {
+  font-weight: 600;
+}
+
+.check--bad .check-fig {
+  color: var(--debit);
+}
+
+.flag {
+  margin-left: auto;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.flag--ok {
+  color: var(--credit);
+  background: color-mix(in srgb, var(--credit) 14%, transparent);
+}
+
+.flag--bad {
+  color: var(--debit);
+  background: color-mix(in srgb, var(--debit) 16%, transparent);
+}
+
+/* ---------- account / balances ---------- */
+.beams {
+  display: grid;
+  gap: 16px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.beam {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.beam-who {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.beam-track {
+  position: relative;
+  height: 12px;
+  background: linear-gradient(var(--rule), var(--rule)) center / 1px 100% no-repeat;
+}
+
+.beam-bar {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  border-radius: 2px;
+  transition: width 400ms ease;
+}
+
+.beam--credit .beam-bar {
+  left: 50%;
+  background: var(--credit);
+}
+
+.beam--debit .beam-bar {
+  right: 50%;
+  background: var(--debit);
+}
+
+.beam-net {
+  font-size: 0.86rem;
+}
+
+.beam--credit .beam-net {
+  color: var(--credit);
+}
+
+.beam--debit .beam-net {
+  color: var(--debit);
+}
+
+.settle-heading {
+  margin-top: 30px;
+}
+
+.settlements {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.settlement {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  background: var(--paper-raised);
+  border: 1px dashed var(--rule-strong);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.settle-from,
+.settle-to {
+  font-weight: 500;
+}
+
+.settle-arrow {
+  color: var(--ink-soft);
+}
+
+.settle-amount {
+  margin-left: auto;
+  font-weight: 600;
+  color: var(--amber);
+}
+
+.empty {
+  margin: 14px 0 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- colophon ---------- */
+.colophon {
+  display: flex;
+  gap: 8px;
+  margin-top: 40px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-fig);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+
+/* ---------- load motion ---------- */
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.entries tbody tr {
+  animation: row-in 320ms ease both;
+}
+
+.entries tbody tr:nth-child(2) {
+  animation-delay: 40ms;
+}
+
+.entries tbody tr:nth-child(3) {
+  animation-delay: 80ms;
+}
+
+.entries tbody tr:nth-child(4) {
+  animation-delay: 120ms;
+}
