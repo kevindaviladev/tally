@@ -50,10 +50,10 @@ export function computeBalances(expenses: Expense[], members: Member[]): Balance
   const net = new Map<string, number>(members.map((member) => [member.id, 0]));
 
   for (const expense of expenses) {
-    net.set(expense.paidBy, (net.get(expense.paidBy) ?? 0) - expense.amount);
+    net.set(expense.paidBy, (net.get(expense.paidBy) ?? 0) + expense.amount);
     for (const participant of expense.participants) {
       const share = expense.amount / expense.participants.length;
-      net.set(participant, (net.get(participant) ?? 0) + share);
+      net.set(participant, (net.get(participant) ?? 0) - share);
     }
   }
 
